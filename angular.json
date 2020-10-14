@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-medium-clone"
+    }
+  },
+  "defaultProject": "ng-medium-clone",
+  "cli": {
+    "analytics": "07173dda-4e0a-4982-91a2-446371002dc0"
+  }
 }
