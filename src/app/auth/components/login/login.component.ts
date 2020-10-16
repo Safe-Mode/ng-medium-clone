@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
-import { AppStateInterface } from '../../shared/types/app-state.interface';
-import { RegisterRequestInterface } from '../types/register-request.interface';
-import { BackendErrorsInterface } from '../../shared/types/backend-errors.interface';
-import { registerAction } from '../store/actions/register.action';
-import { isSubmittingSelector, validationErrorsSelector } from '../store/selectors';
+import { AppStateInterface } from '../../../shared/types/app-state.interface';
+import { RegisterRequestInterface } from '../../types/register-request.interface';
+import { BackendErrorsInterface } from '../../../shared/types/backend-errors.interface';
+import { loginAction } from '../../store/actions/login.action';
+import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent {
   isSubmitting$: Observable<boolean> = this.getSubmittingStatus();
   backendErrors$: Observable<BackendErrorsInterface | null> = this.getBackendErrors();
 
@@ -26,12 +26,8 @@ export class RegisterComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-  }
-
   getForm(): FormGroup {
     return this.fb.group({
-      username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -54,6 +50,6 @@ export class RegisterComponent implements OnInit {
       user: this.form.value
     };
 
-    this.store.dispatch(registerAction({ request }));
+    this.store.dispatch(loginAction({ request }));
   }
 }

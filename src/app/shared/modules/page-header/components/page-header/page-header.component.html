@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light">
+  <div class="container">
+    <a [routerLink]="['/']" class="navbar-brand">
+      <app-logo></app-logo>
+    </a>
+
+    <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item" *ngFor="let navLink of navLinks">
+        <a [routerLink]="[navLink.link]" class="nav-link">
+          <i class="{{ navLink.icon }}" *ngIf="navLink.icon"></i>
+          {{ navLink.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
