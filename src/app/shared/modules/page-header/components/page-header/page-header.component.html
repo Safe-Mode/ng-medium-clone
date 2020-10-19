@@ -5,9 +5,14 @@
     </a>
 
     <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link">Home</a>
+      </li>
+
       <li class="nav-item" *ngFor="let navLink of navLinks">
         <a [routerLink]="[navLink.link]" class="nav-link">
           <i class="{{ navLink.icon }}" *ngIf="navLink.icon"></i>
+          <img [src]="navLink.image" alt="Profile photo" class="user-pic" *ngIf="navLink.image">
           {{ navLink.title }}
         </a>
       </li>

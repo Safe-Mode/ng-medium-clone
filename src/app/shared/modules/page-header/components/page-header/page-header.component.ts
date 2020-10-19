@@ -41,14 +41,13 @@ export class PageHeaderComponent implements OnInit {
           (isLoggedIn: boolean | null) => (isLoggedIn) ? this.store.pipe(
             select((state: object) => userSelector(state as AppStateInterface))
           ) : EMPTY
-        ),
-        tap((user: UserInterface | null) => {
-          if (user) {
-            this.navLinks = this.getUserLinks(user.username);
-          }
-        })
+        )
       )
-      .subscribe();
+      .subscribe((user: UserInterface | null) => {
+        if (user) {
+          this.navLinks = this.getUserLinks(user);
+        }
+      });
   }
 
   getLoginStatus(): Observable<boolean | null> {
@@ -57,7 +56,7 @@ export class PageHeaderComponent implements OnInit {
     );
   }
 
-  private getUserLinks(username: string): NavLinkInterface[] {
+  private getUserLinks(user: UserInterface): NavLinkInterface[] {
     return [{
       title: 'New Article',
       link: '/articles/new',
@@ -67,8 +66,10 @@ export class PageHeaderComponent implements OnInit {
       link: '/settings',
       icon: 'ion-gear-a'
     }, {
-      title: username,
-      link: `/profiles/${username}`
+      title: user.username,
+      link: `/profiles/${user.username}`,
+      icon: (user.image === null) ? 'ion-person' : '',
+      image: user.image
     }];
   }
 

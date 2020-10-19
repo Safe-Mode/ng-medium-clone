@@ -23,6 +23,12 @@ export class AuthService {
     return this.authUser(`${environment.apiUrl}/users/login`, data);
   }
 
+  getUser(): Observable<UserInterface> {
+    return this.http
+      .get<AuthResponseInterface>(`${environment.apiUrl}/user`)
+      .pipe(map(({ user }) => user));
+  }
+
   private authUser(url: string, data: RegisterRequestInterface | LoginRequestInterface): Observable<UserInterface> {
     return this.http
       .post<AuthResponseInterface>(url, data)

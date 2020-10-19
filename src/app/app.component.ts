@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { getUserAction } from './auth/store/actions/get-user.action';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'ng-medium-clone';
+export class AppComponent implements OnInit {
+
+  constructor(private store: Store) {
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(getUserAction());
+  }
 }

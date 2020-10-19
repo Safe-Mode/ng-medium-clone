@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { reducers } from './store/reducers';
 import { RegisterEffect } from './store/effects/register.effect';
 import { LoginEffect } from './store/effects/login.effect';
+import { GetUserEffect } from './store/effects/get-user.effect';
 
 const routes: Routes = [{
   path: 'register',
@@ -31,7 +32,8 @@ const routes: Routes = [{
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([
       RegisterEffect,
-      LoginEffect
+      LoginEffect,
+      GetUserEffect
     ])
   ],
   declarations: [
