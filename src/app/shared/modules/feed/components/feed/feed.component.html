@@ -6,7 +6,7 @@
   <div class="article-preview" *ngFor="let article of (feed$ | async)?.articles">
     <div class="article-meta">
       <a [routerLink]="['/profiles', article.author.username]">
-        <img [src]="article.author.image" alt="">
+        <img [src]="article.author.image" [alt]="article.author.username">
       </a>
 
       <div class="info">
@@ -27,5 +27,6 @@
     </a>
   </div>
 
-  PAGINATION
+  <app-pagination [total]="(feed$ | async)?.articlesCount" [limit]="limit" [url]="baseUrl"
+                  [currentPage]="currentPage"></app-pagination>
 </div>

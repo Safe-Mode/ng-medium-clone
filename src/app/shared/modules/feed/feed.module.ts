@@ -10,14 +10,16 @@ import { ErrorMessageModule } from '../error-message/error-message.module';
 import { reducers } from './store/reducers';
 import { GetFeedEffect } from './store/effects/get-feed.effect';
 import { LoadingModule } from '../loading/loading.module';
+import { PaginationModule } from '../pagination/pagination.module';
 
 @NgModule({
   declarations: [FeedComponent],
   imports: [
     CommonModule,
+    RouterModule,
     ErrorMessageModule,
     LoadingModule,
-    RouterModule,
+    PaginationModule,
     StoreModule.forFeature('feed', reducers),
     EffectsModule.forFeature([GetFeedEffect]),
   ],
