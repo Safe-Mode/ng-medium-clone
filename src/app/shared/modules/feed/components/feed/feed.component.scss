@@ -1,0 +1,7 @@
+.preview-link {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

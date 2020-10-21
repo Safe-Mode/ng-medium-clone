@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -15,13 +15,14 @@ import { errorSelector, feedSelector, isLoadingSelector } from '../../store/sele
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() apiUrl?: string;
 
   feed$?: Observable<FeedResponseInterface | null> | null;
   error$?: Observable<string | null> | null;
   isLoading$?: Observable<boolean>;
+
   queryParamsSubscription?: Subscription;
 
   limit = environment.articlesPerPage;
@@ -43,6 +44,13 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.queryParamsSubscription?.unsubscribe();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.apiUrl) {
+      this.apiUrl = changes.apiUrl.currentValue;
+      this.fetchData();
+    }
   }
 
   initializeValues(): void {

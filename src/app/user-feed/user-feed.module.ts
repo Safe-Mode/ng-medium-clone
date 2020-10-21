@@ -2,27 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GlobalFeedComponent } from './components/global-feed/global-feed.component';
+import { UserFeedComponent } from './components/user-feed/user-feed.component';
 import { FeedModule } from '../shared/modules/feed/feed.module';
 import { BannerModule } from '../shared/modules/banner/banner.module';
 import { PopularTagsModule } from '../shared/modules/popular-tags/popular-tags.module';
 import { FeedToggleModule } from '../shared/modules/feed-toggle/feed-toggle.module';
 
 const routes: Routes = [{
-  path: '',
-  component: GlobalFeedComponent
+  path: 'feed',
+  component: UserFeedComponent
 }];
 
 @NgModule({
-  declarations: [GlobalFeedComponent],
+  declarations: [UserFeedComponent],
   imports: [
     CommonModule,
     BannerModule,
     FeedModule,
     PopularTagsModule,
     FeedToggleModule,
-    RouterModule.forChild(routes)
+    RouterModule.forRoot(routes)
   ]
 })
-export class GlobalFeedModule {
+export class UserFeedModule {
 }
