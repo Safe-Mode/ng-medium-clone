@@ -15,6 +15,7 @@ import { isSubmittingSelector, validationErrorsSelector } from '../../store/sele
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
   isSubmitting$: Observable<boolean> = this.getSubmittingStatus();
   backendErrors$: Observable<BackendErrorsInterface | null> = this.getBackendErrors();
 
@@ -22,7 +23,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store
+    private store: Store<AppStateInterface>
   ) {
   }
 
@@ -34,15 +35,11 @@ export class LoginComponent {
   }
 
   getSubmittingStatus(): Observable<boolean> {
-    return this.store.pipe(
-      select((state: object) => isSubmittingSelector(state as AppStateInterface))
-    );
+    return this.store.pipe(select(isSubmittingSelector));
   }
 
   getBackendErrors(): Observable<BackendErrorsInterface | null> {
-    return this.store.pipe(
-      select((state: object) => validationErrorsSelector(state as AppStateInterface))
-    );
+    return this.store.pipe(select(validationErrorsSelector));
   }
 
   onFormSubmit(): void {
@@ -52,4 +49,5 @@ export class LoginComponent {
 
     this.store.dispatch(loginAction({ request }));
   }
+
 }

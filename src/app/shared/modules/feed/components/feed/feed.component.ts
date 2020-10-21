@@ -31,7 +31,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store<AppStateInterface>
   ) {
   }
 
@@ -46,18 +46,9 @@ export class FeedComponent implements OnInit, OnDestroy {
   }
 
   initializeValues(): void {
-    this.feed$ = this.store.pipe(
-      select((state: object) => feedSelector(state as AppStateInterface))
-    );
-
-    this.error$ = this.store.pipe(
-      select((state: object) => errorSelector(state as AppStateInterface))
-    );
-
-    this.isLoading$ = this.store.pipe(
-      select((state: object) => isLoadingSelector(state as AppStateInterface))
-    );
-
+    this.feed$ = this.store.pipe(select(feedSelector));
+    this.error$ = this.store.pipe(select(errorSelector));
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.baseUrl = this.router.url.split('?')[0];
   }
 

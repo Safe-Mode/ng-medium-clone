@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -14,7 +14,8 @@ import { isSubmittingSelector, validationErrorsSelector } from '../../store/sele
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+
   isSubmitting$: Observable<boolean> = this.getSubmittingStatus();
   backendErrors$: Observable<BackendErrorsInterface | null> = this.getBackendErrors();
 
@@ -22,11 +23,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store
+    private store: Store<AppStateInterface>
   ) {
-  }
-
-  ngOnInit(): void {
   }
 
   getForm(): FormGroup {
@@ -38,15 +36,11 @@ export class RegisterComponent implements OnInit {
   }
 
   getSubmittingStatus(): Observable<boolean> {
-    return this.store.pipe(
-      select((state: object) => isSubmittingSelector(state as AppStateInterface))
-    );
+    return this.store.pipe(select(isSubmittingSelector));
   }
 
   getBackendErrors(): Observable<BackendErrorsInterface | null> {
-    return this.store.pipe(
-      select((state: object) => validationErrorsSelector(state as AppStateInterface))
-    );
+    return this.store.pipe(select(validationErrorsSelector));
   }
 
   onFormSubmit(): void {
@@ -56,4 +50,5 @@ export class RegisterComponent implements OnInit {
 
     this.store.dispatch(registerAction({ request }));
   }
+
 }
