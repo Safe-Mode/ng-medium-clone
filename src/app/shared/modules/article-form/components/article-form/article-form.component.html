@@ -1,0 +1,45 @@
+<div class="editor">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <app-backend-errors *ngIf="errors" [errors]="errors"></app-backend-errors>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <fieldset>
+            <fieldset class="form-group">
+              <label for="title" class="sr-only">Title</label>
+              <input type="text" class="form-control form-control-large" id="title" placeholder="Article Title"
+                     formControlName="title">
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="description" class="sr-only">Description</label>
+              <input type="text" class="form-control form-control-large" id="description" placeholder="Description"
+                     formControlName="description">
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="article-body" class="sr-only">Article Body</label>
+              <textarea class="form-control form-control-large" id="article-body" rows="8"
+                        placeholder="What do you have to share width us?"
+                        formControlName="body"></textarea>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="tag-list" class="sr-only">Tag List</label>
+              <input type="text" class="form-control form-control-large" id="tag-list"
+                     placeholder="Enter tags (divide with the space)"
+                     formControlName="tagList">
+            </fieldset>
+          </fieldset>
+
+          <fieldset>
+            <button type="submit" class="btn btn-lg btn-primary pull-xs-right" [disabled]="isSubmitting">
+              Publish Article
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,7 @@ import { GlobalFeedModule } from './global-feed/global-feed.module';
 import { UserFeedModule } from './user-feed/user-feed.module';
 import { TagFeedModule } from './tag-feed/tag-feed.module';
 import { ArticleModule } from './article/article.module';
+import { NewArticleModule } from './new-article/new-article.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { ArticleModule } from './article/article.module';
     GlobalFeedModule,
     UserFeedModule,
     TagFeedModule,
+    NewArticleModule,
     ArticleModule,
     StoreModule.forRoot({
       router: routerReducer
