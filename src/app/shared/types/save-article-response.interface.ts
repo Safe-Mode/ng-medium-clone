@@ -1,5 +1,5 @@
 import { ArticleInterface } from './article.interface';
 
-export interface NewArticleResponseInterface {
+export interface SaveArticleResponseInterface {
   article: ArticleInterface;
 }
