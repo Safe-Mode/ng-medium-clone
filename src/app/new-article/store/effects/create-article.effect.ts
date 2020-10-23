@@ -28,7 +28,7 @@ export class CreateArticleEffect {
   redirectAfterCreate$ = createEffect(() => this.actions$.pipe(
     ofType(createArticleSuccessAction),
     tap(({ article: { slug } }) => this.router.navigate(['/articles', slug]))
-  ));
+  ), { dispatch: false });
 
   constructor(
     private router: Router,
