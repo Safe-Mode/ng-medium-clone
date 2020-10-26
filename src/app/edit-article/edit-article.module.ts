@@ -10,9 +10,11 @@ import { LoadingModule } from '../shared/modules/loading/loading.module';
 import { ArticleFormModule } from '../shared/modules/article-form/article-form.module';
 import { reducers } from './store/reducers';
 import { UpdateArticleEffect } from './store/effects/update-article.effect';
+import { GetArticleEffect } from './store/effects/get-article.effect';
+import { ArticleService as SharedArticleService } from '../shared/services/article.service';
 
 const routes: Routes = [{
-  path: 'articles/new',
+  path: 'articles/:slug/edit',
   component: EditArticleComponent
 }];
 
@@ -24,9 +26,12 @@ const routes: Routes = [{
     ArticleFormModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('editArticle', reducers),
-    EffectsModule.forFeature([UpdateArticleEffect])
+    EffectsModule.forFeature([GetArticleEffect, UpdateArticleEffect])
   ],
-  providers: [EditArticleService]
+  providers: [
+    SharedArticleService,
+    EditArticleService
+  ]
 })
 export class EditArticleModule {
 }
