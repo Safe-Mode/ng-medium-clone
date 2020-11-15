@@ -19,6 +19,7 @@ import { TagFeedModule } from './tag-feed/tag-feed.module';
 import { ArticleModule } from './article/article.module';
 import { NewArticleModule } from './new-article/new-article.module';
 import { EditArticleModule } from './edit-article/edit-article.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { EditArticleModule } from './edit-article/edit-article.module';
     NewArticleModule,
     EditArticleModule,
     ArticleModule,
+    SettingsModule,
     StoreModule.forRoot({
       router: routerReducer
     }, {}),

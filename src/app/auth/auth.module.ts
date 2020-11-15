@@ -1,3 +1,4 @@
+import { UpdateUserEffect } from './store/effects/update-user.effect';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +34,8 @@ const routes: Routes = [{
     EffectsModule.forFeature([
       RegisterEffect,
       LoginEffect,
-      GetUserEffect
+      GetUserEffect,
+      UpdateUserEffect
     ])
   ],
   declarations: [
