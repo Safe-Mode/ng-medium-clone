@@ -15,6 +15,7 @@ import { reducers } from './store/reducers';
 import { RegisterEffect } from './store/effects/register.effect';
 import { LoginEffect } from './store/effects/login.effect';
 import { GetUserEffect } from './store/effects/get-user.effect';
+import { LogoutEffect } from './store/effects/logout.effect';
 
 const routes: Routes = [{
   path: 'register',
@@ -35,7 +36,8 @@ const routes: Routes = [{
       RegisterEffect,
       LoginEffect,
       GetUserEffect,
-      UpdateUserEffect
+      UpdateUserEffect,
+      LogoutEffect
     ])
   ],
   declarations: [

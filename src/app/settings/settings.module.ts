@@ -1,10 +1,12 @@
-import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 
-import { SettingsComponent } from './components/settings/settings.component';
+import { BackendErrorsModule } from '../shared/modules/backend-errors/backend-errors.module';
 import { reducers } from './store/reducers';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [{
   path: 'settings',
@@ -15,6 +17,8 @@ const routes: Routes = [{
   declarations: [SettingsComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    BackendErrorsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('settings', reducers)
   ],
