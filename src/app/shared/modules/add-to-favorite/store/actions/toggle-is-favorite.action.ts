@@ -5,7 +5,7 @@ import { ActionTypes } from '../action-types';
 
 export const toggleIsFavoriteAction = createAction(
   ActionTypes.TOGGLE_IS_FAVORITE,
-  props<{ articleSlug: string, authToken: string }>()
+  props<{ isFavorite: boolean, articleSlug: string }>()
 );
 
 export const toggleIsFavoriteSuccessAction = createAction(

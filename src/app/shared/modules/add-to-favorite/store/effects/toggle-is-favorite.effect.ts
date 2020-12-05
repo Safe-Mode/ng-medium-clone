@@ -13,18 +13,23 @@ export class ToggleIsFavoriteEffect {
 
   toggleIsFavorite$ = createEffect(() => this.actions$.pipe(
     ofType(toggleIsFavoriteAction),
-    switchMap(({ articleSlug, authToken }): Observable<Action> => {
-      return this.addTofavoriteService.addToFavorite(articleSlug, authToken).pipe(
-        map((article: ArticleResponseInterface) => toggleIsFavoriteSuccessAction({ article })),
-        catchError(() => of(toggleIsFavoriteFailureAction()))
-      );
-    })
+    switchMap(({ isFavorite, articleSlug }): Observable<Action> => (isFavorite) ?
+      this.handleResponse(this.addTofavoriteService.deleteFromFavorite(articleSlug)) :
+      this.handleResponse(this.addTofavoriteService.addToFavorite(articleSlug))
+    )
   ));
 
   constructor(
     private actions$: Actions,
     private addTofavoriteService: AddToFavoriteService
   ) {
+  }
+
+  private handleResponse(response$: Observable<ArticleResponseInterface>): Observable<Action> {
+    return response$.pipe(
+      map((article: ArticleResponseInterface) => toggleIsFavoriteSuccessAction({ article })),
+      catchError(() => of(toggleIsFavoriteFailureAction()))
+    );
   }
 
 }
