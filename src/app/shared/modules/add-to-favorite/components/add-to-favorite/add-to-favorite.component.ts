@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 
@@ -19,7 +20,10 @@ export class AddToFavoriteComponent implements OnInit {
 
   isLoggedIn!: boolean | null;
 
-  constructor(private store: Store<AppStateInterface>) {
+  constructor(
+    private router: Router,
+    private store: Store<AppStateInterface>
+  ) {
   }
 
   ngOnInit(): void {
@@ -36,10 +40,11 @@ export class AddToFavoriteComponent implements OnInit {
 
     if (this.isLoggedIn) {
       this.store.dispatch(toggleIsFavoriteAction({ isFavorite: this.isFavorite, articleSlug: this.articleSlug }));
+      (this.isFavorite) ? this.favoritesCount-- : this.favoritesCount++;
+      this.isFavorite = !this.isFavorite;
+    } else {
+      this.router.navigateByUrl('/login');
     }
-
-    (this.isFavorite) ? this.favoritesCount-- : this.favoritesCount++;
-    this.isFavorite = !this.isFavorite;
   }
 
 }
