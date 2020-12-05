@@ -1,0 +1,5 @@
+<button class="btn btn-sm" [ngClass]="{ 'btn-outline-primary': !isFavorite, 'btn-primary': isFavorite }"
+  (click)="onAddToFavorite($event)">
+  <i class="ion-heart"></i>
+  {{ favoritesCount }}
+</button>

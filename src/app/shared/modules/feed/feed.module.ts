@@ -12,6 +12,7 @@ import { GetFeedEffect } from './store/effects/get-feed.effect';
 import { LoadingModule } from '../loading/loading.module';
 import { PaginationModule } from '../pagination/pagination.module';
 import { TagListModule } from '../tag-list/tag-list.module';
+import { AddToFavoriteModule } from './../add-to-favorite/add-to-favorite.module';
 
 @NgModule({
   declarations: [FeedComponent],
@@ -22,6 +23,7 @@ import { TagListModule } from '../tag-list/tag-list.module';
     LoadingModule,
     PaginationModule,
     TagListModule,
+    AddToFavoriteModule,
     StoreModule.forFeature('feed', reducers),
     EffectsModule.forFeature([GetFeedEffect]),
   ],
