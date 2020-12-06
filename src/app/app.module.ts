@@ -20,6 +20,7 @@ import { ArticleModule } from './article/article.module';
 import { NewArticleModule } from './new-article/new-article.module';
 import { EditArticleModule } from './edit-article/edit-article.module';
 import { SettingsModule } from './settings/settings.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +42,8 @@ import { SettingsModule } from './settings/settings.module';
     }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    ProfileModule
   ],
   providers: [
     PersistenceService,
