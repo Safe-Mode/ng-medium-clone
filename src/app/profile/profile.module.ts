@@ -8,12 +8,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileService } from './services/profile.service';
 import { GetProfileEffect } from './store/effects/get-profile.effect';
 import { reducers } from './store/reducers';
+import { FeedModule } from '../shared/modules/feed/feed.module';
 
 const routes: Routes = [{
   path: 'profiles/:slug',
   component: ProfileComponent
 }, {
-  path: 'profiles/:slug/favorites',
+  path: 'profiles/:slug/favorite',
   component: ProfileComponent
 }];
 
@@ -21,6 +22,7 @@ const routes: Routes = [{
   declarations: [ProfileComponent],
   imports: [
     CommonModule,
+    FeedModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('profile', reducers),
     EffectsModule.forFeature([GetProfileEffect])
